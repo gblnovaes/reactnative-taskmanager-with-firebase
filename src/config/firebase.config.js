@@ -15,7 +15,6 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-console.log(process.env.REACT_APP_ID)
 export default firebase
 
 

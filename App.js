@@ -16,21 +16,21 @@ return (
               name='Task'
               component={Task}
               options={{
-                headerTintColor:"#191919",
+                headerTintColor:"#f92e6a",
               }} />
 
             <Stack.Screen
               name='NewTask'
               component={NewTask}
               options={{
-                headerTintColor:"#121212",
+                headerTintColor:"#f92e6a",
               }} />
               
             <Stack.Screen 
               name='Details'
               component={Details}
               options={{
-                headerTintColor:"#191919",
+                headerTintColor:"#f92e6a",
               }}
             />
 

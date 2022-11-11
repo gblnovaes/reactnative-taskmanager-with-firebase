@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import firebase from '../../config/firebase.config'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash'
+import { faStar } from '@fortawesome/free-solid-svg-icons/faStar'
+
 
 
 export function Task({navigation}){
@@ -24,14 +28,14 @@ export function Task({navigation}){
     return(
         <View style={styles.container}>
             
-            <FlatList showsHorizontalScrollIndicator={false} data={tasks} renderItem= {
+            <FlatList showsVerticalScrollIndicator={false} data={tasks} renderItem= {
                 ({item}) => { 
                     return(
                        <View style={styles.tasks}> 
-
-                            <Text onPress={() => navigation.navigate('Details')} style={styles.descriptionTask}>{item.description}</Text>
-                             <TouchableOpacity style={styles.deleteTask} onPress={() =>deleteTask(item.id)}>
-                               <Text>remover</Text>
+                                <FontAwesomeIcon  color="#FC3333"  icon={faStar} size={23}></FontAwesomeIcon>
+                                <Text onPress={() => navigation.navigate('Details')} style={styles.descriptionTask}>{item.description}</Text>
+                                <TouchableOpacity style={styles.deleteTask} onPress={() =>deleteTask(item.id)}>
+                                 <FontAwesomeIcon color="#FC3333" icon={faTrash} size={18} name='remove'></FontAwesomeIcon> 
                                  
                              </TouchableOpacity>
                        </View>
@@ -41,7 +45,10 @@ export function Task({navigation}){
 
              <TouchableOpacity 
                 style={styles.buttonNewTask}
-                onPress={() => navigation.navigate("NewTask")}>
+                onPress={() => navigation.navigate("NewTask",{
+                    id: 1,
+                    description: 2
+                })}>
                 <Text style={styles.iconButton}>+</Text>
              </TouchableOpacity>
 
@@ -53,16 +60,22 @@ export function Task({navigation}){
 const styles = StyleSheet.create({
     container: {
         flex:1,
-        paddingTop: 20,
-        backgroundColor:'#999999'
+        paddingTop: 8,
+        marginLeft:8,
+        marginRight:8,
+        backgroundColor:'#f3f3f3'
     },
     tasks:{
-        backgroundColor:'#f5f5f5',
-        margin:6,
+        height:80,
+        backgroundColor:'#fff',
+        margin:4,
         padding:16,
-        borderRadius:4,
+        borderRadius:3,
         flexDirection:'row',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        shadowColor:'#151515',
+        alignItems:'center',
+        elevation: 5,
         
     },
     buttonNewTask:{
@@ -71,22 +84,25 @@ const styles = StyleSheet.create({
         width:60,
         height:60,
         borderRadius:50,
-        backgroundColor:'#ff0000',
+        backgroundColor:'#f92e6a',
         justifyContent:"center",
         alignItems: "center",
-        position:"absolute"
+        position:"absolute",
+        shadowColor:'#888',
+        elevation:16,
+        shadowRadius:10
     },
     iconButton:{
         color:'#fff',
         fontSize:24,
-        fontWeight:"bold"
+        fontWeight:'300'
     },
     descriptionTask:{
         width: '75%',
         borderStartColor:'#99cc99'
     },
     deleteTask:{
-        width:'15%',
+       
 
     }
 })
