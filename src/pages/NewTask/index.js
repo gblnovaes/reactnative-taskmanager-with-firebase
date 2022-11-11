@@ -20,8 +20,7 @@ export function NewTask({navigation }) {
         }).then(() => {
             setNewTask('')
             navigation.navigate('Task')
-        })
-       
+        })   
     }
 
     return (
